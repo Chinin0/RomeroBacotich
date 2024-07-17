@@ -85,6 +85,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('estilo/light', [UsuarioController::class, 'light'])->name('estilo.light');
     Route::get('estilo/normal', [UsuarioController::class, 'normal'])->name('estilo.normal');
     Route::get('estilo/dark', [UsuarioController::class, 'dark'])->name('estilo.dark');
+    Route::get('estilo/niño', [UsuarioController::class, 'niño'])->name('estilo.niño');
 
     Route::post('usuarios/editProfileForm', [UsuarioController::class, 'editProfileForm'])->name('usuarios.editProfileForm');
     Route::post('usuarios/changePasswordForm', [UsuarioController::class, 'changePasswordForm'])->name('usuarios.changePasswordForm');

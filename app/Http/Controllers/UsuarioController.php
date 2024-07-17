@@ -246,4 +246,12 @@ class UsuarioController extends Controller
         return back();
     }
 
+    public function niño()
+    {
+        $usuario = User::find(Auth::user()->id);
+        $usuario->estilo = 'niño';
+        $usuario->save();
+        return back();
+    }
+
 }
