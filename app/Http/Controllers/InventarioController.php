@@ -17,23 +17,32 @@ class InventarioController extends Controller
     public function index()
     {
         $faltantes = Producto::where('stock', '=', 0)->get();
-        $excasos= Producto::where('stock', '<', 3)
-                            ->where('stock', '>', 0)
-                            ->get();
+        $excasos = Producto::where('stock', '<', 3)
+            ->where('stock', '>', 0)
+            ->get();
         $productos = Producto::orderBy('stock', 'asc')->get();
 
         $inventarios = Inventario::orderBy('idactivo')->paginate(10);
 
         for ($i = 0; $i < count($inventarios); $i++) {
             $producto = Producto::find($inventarios[$i]['idproducto']);
-            $inventarios[$i]['idproducto'] = $producto->nombre.' - '.$producto->stock.' unidades ';
+            if ($producto) {
+                $inventarios[$i]['idproducto'] = $producto->nombre . ' - ' . $producto->stock . ' unidades ';
+            } else {
+                $inventarios[$i]['idproducto'] = 'Producto no encontrado';
+            }
 
-            $Activo = Activo::find($inventarios[$i]['idactivo']);
-            $inventarios[$i]['idactivo'] = $Activo->nombre;
+            $activo = Activo::find($inventarios[$i]['idactivo']);
+            if ($activo) {
+                $inventarios[$i]['idactivo'] = $activo->nombre;
+            } else {
+                $inventarios[$i]['idactivo'] = 'Activo no encontrado';
+            }
         }
 
-        return view('inventarios.index', compact('faltantes','excasos','inventarios'));
+        return view('inventarios.index', compact('faltantes', 'excasos', 'inventarios'));
     }
+
 
     public function create()
     {
@@ -43,7 +52,7 @@ class InventarioController extends Controller
                 ->from('inventarios');
         })->get();
 
-        return view('inventarios.crear', compact('activos','productos'));
+        return view('inventarios.crear', compact('activos', 'productos'));
     }
 
 
@@ -70,19 +79,20 @@ class InventarioController extends Controller
                 ->where('id', '!=', $inventario->id);
         })->get();
 
-        return view('inventarios.editar', compact('inventario','activos','productos'));
+        return view('inventarios.editar', compact('inventario', 'activos', 'productos'));
     }
 
 
-    public function update(Request $request,Inventario $inventario)
+    public function update(Request $request, Inventario $inventario)
     {
         //
         $this->validate($request, [
-            'nombre'=> 'required',
-            'detalle'=> 'required',
-            'f_adquisicion'=>'required',
-            'f_mantenimiento'=>'required',
-            'estado'=>'required']);
+            'nombre' => 'required',
+            'detalle' => 'required',
+            'f_adquisicion' => 'required',
+            'f_mantenimiento' => 'required',
+            'estado' => 'required'
+        ]);
 
         $inventario->update($request->all());
 
@@ -98,5 +108,4 @@ class InventarioController extends Controller
 
         return redirect()->route('inventarios.index');
     }
-
 }
