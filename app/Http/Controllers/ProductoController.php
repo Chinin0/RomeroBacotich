@@ -29,7 +29,8 @@ class ProductoController extends Controller
     public function create()
     {
         $categorias = Categoria::all();
-        return view('productos.crear', compact('categorias'));
+        $ofertas = \DB::table('ofertas')->get();
+        return view('productos.crear', compact('categorias', 'ofertas'));
     }
 
     public function store(Request $request)

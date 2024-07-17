@@ -14,7 +14,7 @@
                                 <div class="alert alert-dark alert-dismissible fade show" role="alert">
                                     <strong>!Revise los campos!</strong>
                                     @foreach ($errors->all() as $error)
-                                        <span class="badge badge-danger">{{$error}}</span>
+                                        <span class="badge badge-danger">{{ $error }}</span>
                                     @endforeach
                                     <button type= "button" class="close" data-dismiss="alert" aria-label="close">
                                         <span aria-hidden="true">$times;</span>
@@ -22,7 +22,7 @@
                                 </div>
                             @endif
 
-                            {!! Form::open(array('route'=>'productos.store', 'method'=>'POST','enctype' => 'multipart/form-data')) !!}
+                            {!! Form::open(['route' => 'productos.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                             <div class="row">
 
 
@@ -36,25 +36,37 @@
                                         </select>
                                     </div>
                                 </div>
+                                {{-- oferta --}}
+                                <div class="col-xs-12 col-sm-12 col-md-12"> 
+                                    <div class="form-group">
+                                        <label for="oferta">Oferta</label>
+                                        <select name="idoferta" id="oferta" class="form-control">
+                                            @foreach ($ofertas as $oferta)
+                                                <option value="{{ $oferta->id }}">{{ $oferta->descripcion }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                {{-- oferta --}}
 
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="codigo">codigo</label>
-                                        {!! Form::text('codigo',null,array('class'=>'form-control')) !!}
+                                        {!! Form::text('codigo', null, ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
 
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="nombre">nombre</label>
-                                        {!! Form::text('nombre',null,array('class'=>'form-control')) !!}
+                                        {!! Form::text('nombre', null, ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
 
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="precio_venta">precio de venta</label>
-                                        {!! Form::number('precio_venta', null, array('class' => 'form-control', 'step' => '0.01')) !!}
+                                        {!! Form::number('precio_venta', null, ['class' => 'form-control', 'step' => '0.01']) !!}
                                     </div>
                                 </div>
 
@@ -63,7 +75,7 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="stock">stock</label>
-                                        {!! Form::number('stock',null,array('class'=>'form-control')) !!}
+                                        {!! Form::number('stock', null, ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
 
@@ -71,7 +83,7 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="descripcion">descripcion</label>
-                                        {!! Form::text('descripcion',null,array('class'=>'form-control')) !!}
+                                        {!! Form::text('descripcion', null, ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
 
