@@ -25,9 +25,5 @@
         @csrf
         <button type="submit" class="btn btn-primary">Pagar</button>
     </form>
-
-    <footer class="main-footer">
-        @include('layouts.footer')
-    </footer>
 </div>
 @endsection

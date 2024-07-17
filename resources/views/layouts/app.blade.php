@@ -116,9 +116,8 @@
             @yield('content')
         </div>
         <footer class="main-footer">
-
-            @include('layouts.footer')
-        </footer>
+    @include('layouts.footer')
+  </footer>
     </div>
 </div>
 

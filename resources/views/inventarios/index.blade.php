@@ -31,14 +31,8 @@
                                     </div>
 
                                     @can('crear-inventario')
-                                        <a class="btn btn-warning" href="{{ route('inventarios.create') }}"> Asignar Producto en Estante </a>
+                                        <a class="btn btn-warning" href="{{ route('inventarios.create') }}"> Asignar Productos</a>
                                     @endcan
-
-
-
-
-
-
 
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <h2>Productos ordenados por Activo:</h2>

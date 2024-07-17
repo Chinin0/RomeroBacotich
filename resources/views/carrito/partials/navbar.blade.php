@@ -13,8 +13,7 @@
         <script type="text/javascript" src="https://counter7.optistats.ovh/private/counter.js?c=uyh48d39a8rrz2axadeahl15mw3ct9eu&down=async" async></script><noscript><a href="https://www.contadorvisitasgratis.com" title="contador para pagina web"><img src="https://counter7.optistats.ovh/private/contadorvisitasgratis.php?c=uyh48d39a8rrz2axadeahl15mw3ct9eu" border="0" title="contador para pagina web" alt="contador para pagina web"></a></noscript> -->
         <div class="navbar-brand">
             <a href="{{ url('/') }}">
-                <img src="{{ asset('img/logonuevo.png') }}" alt="Logo de la Empresa" height="70" 
-                width="500">
+                <img src="{{ asset('img/logonuevo.png') }}" alt="Logo de la Empresa" height="70" width="500">
             </a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -60,6 +59,9 @@
                         ¡Hola, {{ Auth::user()->name }}!
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item has-icon" href="{{route('estilo.niño')}}">
+                            <i class="fas fa-moon"></i> Modo Niño
+                        </a>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             Logout
                         </a>

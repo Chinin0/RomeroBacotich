@@ -61,8 +61,5 @@
             </div>
         </div>
     </div>
-    <footer class="main-footer">
-        @include('layouts.footer')
-    </footer>
 </div>
 @endsection

@@ -25,7 +25,7 @@
         </div>
         <div class="col-4">
             <small>
-                © Grupo - SC
+                © Grupo - SA
             </small>
         </div>
     </div>
