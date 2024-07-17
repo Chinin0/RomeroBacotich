@@ -28,6 +28,7 @@ use App\Http\Controllers\PagoController;
 use App\Http\Controllers\RecetaController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ConsumirServicioController;
+use App\Http\Controllers\OfertaController;
 
 
 /*
@@ -60,7 +61,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('pacientes', PacienteController::class);
     Route::resource('carnet_servicios', CarnetServicioController::class);
 
-
+    Route::get('/ofertas',  [OfertaController::class, 'index'])->name('ofertas.index');
+    Route::POST('/ofertas',  [OfertaController::class, 'create'])->name('ofertas.create');
+    Route::view('/ofertas/crear',  'ofertas.create')->name('ofertas.crear');
+    Route::DELETE('/ofertas/{id}',  [OfertaController::class, 'delete'])->name('ofertas.delete');
 
     Route::resource('categorias', CategoriaController::class);
     Route::resource('productos', ProductoController::class);
