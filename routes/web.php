@@ -100,7 +100,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/update', [CartController::class, 'update'])->name('cart.update');
     Route::post('/remove', [CartController::class, 'remove'])->name('cart.remove');
     Route::post('/clear', [CartController::class, 'clear'])->name('cart.clear');
-    Route::get('/', [CartController::class, 'shop'])->name('shop');
+    Route::get('/shop', [CartController::class, 'shop'])->name('shop');
     Route::get('/filtar', [CartController::class, 'filtrar'])->name('shop.filtrar');
     //servicios QR
     Route::post('/consumirServicio', [ConsumirServicioController::class, 'RecolectarDatos'])->name('servicioqr.consumir');
