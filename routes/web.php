@@ -43,7 +43,7 @@ use App\Http\Controllers\OfertaController;
 */
 
 Route::get('/welcome', function () { return view('welcome');});
-//CARRITO
+//CARRITO prueba chinin
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::view('/', 'landing')->name('landing');
