@@ -23,21 +23,14 @@
                                 </div>
                             @endif
 
-
-
-
                             {!! Form::open(array('route'=>'roles.store', 'method'=>'POST')) !!}
                             <div class="row">
-
-
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="name">Nombre del Rol</label>
                                         {!! Form::text('name',null,array('class'=>'form-control')) !!}
                                     </div>
                                 </div>
-    
-    
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="">Permisos para este Rol:</label>
@@ -50,18 +43,11 @@
                                         @endforeach
                                     </div>
                                 </div>
-        
-
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <button type="submit" class="btn btn-primary">Guardar</button>
                                 </div>
-    
                             </div>
-
                             {!! Form::close() !!}
-
-
-
                         </div>
                     </div>
                 </div>
