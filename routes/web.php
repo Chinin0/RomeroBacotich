@@ -42,12 +42,10 @@ use App\Http\Controllers\OfertaController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/welcome', function () { return view('welcome');});
 //CARRITO
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
@@ -112,6 +110,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/reservations', [VentaController::class, 'showReservations'])->name('reservations.index');
     Route::post('/reservations', [VentaController::class, 'reservar'])->name('reservations.store');
     Route::post('/reservations/pay', [VentaController::class, 'payReservations'])->name('reservations.pay');
-    
+
     Route::get('/listaPagos', [PagoController::class, 'PagosById'])->name('listaPagos');
 });
