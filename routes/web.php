@@ -45,8 +45,8 @@ use App\Http\Controllers\OfertaController;
 Route::get('/welcome', function () { return view('welcome');});
 //CARRITO
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::view('/', 'landing')->name('landing');
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function () {
