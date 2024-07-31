@@ -12,20 +12,15 @@ return new class extends Migration
      * @return void
      */
     public function up()
-{
-    if (!Schema::hasTable('personas')) {
-        Schema::create('personas', function (Blueprint $table) {
+    {
+        Schema::create('ofertas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('app_apm');
-            //$table->string('sexo');
-            // $table->date('f_nacimiento');
-            $table->string('celular');
-            $table->string('direccion');
+            $table->string('descripcion');
+            $table->decimal('porcentaje', 5, 2);
             $table->timestamps();
         });
     }
-}
 
     /**
      * Reverse the migrations.
@@ -34,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('personas');
+        Schema::dropIfExists('ofertas');
     }
 };

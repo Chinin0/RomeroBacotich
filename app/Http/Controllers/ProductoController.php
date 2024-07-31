@@ -5,31 +5,29 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Categoria;
+use App\Models\Oferta;
 
 class ProductoController extends Controller
 {
-    //
-
-    function _construct(){
-        $this->middleware('permission:ver-producto|crear-producto|editar-producto|borrar-producto', ['only'=>['index']]);
-        $this->middleware('permission:crear-producto', ['only'=>['create','store']]);
-        $this->middleware('permission:editar-producto', ['only'=>['edit','update']]);
-        $this->middleware('permission:borrar-producto', ['only'=>['destroy']]);
+    // Constructor para aplicar middleware
+    public function __construct()
+    {
+        $this->middleware('permission:ver-producto|crear-producto|editar-producto|borrar-producto', ['only' => ['index']]);
+        $this->middleware('permission:crear-producto', ['only' => ['create', 'store']]);
+        $this->middleware('permission:editar-producto', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:borrar-producto', ['only' => ['destroy']]);
     }
-
-
 
     public function index()
     {
         $productos = Producto::paginate(10);
-
         return view('productos.index', compact('productos'));
     }
 
     public function create()
     {
         $categorias = Categoria::all();
-        $ofertas = \DB::table('ofertas')->get();
+        $ofertas = Oferta::all();
         return view('productos.crear', compact('categorias', 'ofertas'));
     }
 
@@ -37,9 +35,10 @@ class ProductoController extends Controller
     {
         $request->validate([
             'idcategoria' => 'required',
+            'idoferta' => 'nullable|exists:ofertas,id',
             'codigo' => 'nullable',
             'nombre' => 'required|unique:productos',
-            'precio_venta' => 'required',
+            'precio_venta' => 'required|numeric',
             'stock' => ['required', 'numeric', 'min:2'],
             'descripcion' => 'nullable',
             'estado' => 'required',
@@ -48,12 +47,23 @@ class ProductoController extends Controller
 
         // Procesa la imagen y guárdala en tu sistema de archivos
         $imagen = $request->file('imagen');
-        $nombreImagen = time() . '.' . $imagen->getClientOriginalName();
+        $nombreImagen = time() . '.' . $imagen->getClientOriginalExtension();
         $ruta = 'img/productos';
-        $imagen->move($ruta, $nombreImagen);
+        $imagen->move(public_path($ruta), $nombreImagen);
 
-        // Crea el producto con la información del formulario y la ruta de la imagen
-        Producto::create(array_merge($request->all(), ['imagen' => $ruta.'/'.$nombreImagen]));
+        $precioVenta = $request->input('precio_venta');
+        $oferta = Oferta::find($request->input('idoferta'));
+        $precioConDescuento = $precioVenta;
+
+        if ($oferta) {
+            $descuento = ($precioVenta * $oferta->porcentaje) / 100;
+            $precioConDescuento = $precioVenta - $descuento;
+        }
+
+        Producto::create(array_merge(
+            $request->all(),
+            ['imagen' => $ruta . '/' . $nombreImagen, 'precio_venta' => $precioConDescuento]
+        ));
 
         return redirect()->route('productos.index')->with('success', 'Producto creado exitosamente.');
     }
@@ -62,22 +72,37 @@ class ProductoController extends Controller
     {
         $producto = Producto::findOrFail($id);
         $categorias = Categoria::all();
-        return view('productos.editar', compact('producto', 'categorias'));
+        $ofertas = Oferta::all();
+        return view('productos.editar', compact('producto', 'categorias', 'ofertas'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
             'idcategoria' => 'required',
+            'idoferta' => 'nullable|exists:ofertas,id',
             'codigo' => 'nullable',
-            'nombre' => 'required|unique:productos,nombre,'.$id,
-            'precio_venta' => 'required',
-            'stock' => 'required',
+            'nombre' => 'required|unique:productos,nombre,' . $id,
+            'precio_venta' => 'required|numeric',
+            'stock' => 'required|numeric|min:2',
             'descripcion' => 'nullable',
             'estado' => 'required',
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         $producto = Producto::findOrFail($id);
+
+        // Procesa la nueva imagen si se proporciona
+        if ($request->hasFile('imagen')) {
+            $imagen = $request->file('imagen');
+            $nombreImagen = time() . '.' . $imagen->getClientOriginalExtension();
+            $ruta = 'img/productos';
+            $imagen->move(public_path($ruta), $nombreImagen);
+            $request['imagen'] = $ruta . '/' . $nombreImagen;
+        } else {
+            $request['imagen'] = $producto->imagen;
+        }
+
         $producto->update($request->all());
 
         return redirect()->route('productos.index')->with('success', 'Producto actualizado exitosamente.');
@@ -93,21 +118,18 @@ class ProductoController extends Controller
 
     public function buscar(Request $request)
     {
-        // Obtener los valores de fecha de inicio y fecha de fin del formulario
         $fechaInicio = $request->input('fecha_inicio');
         $fechaFin = $request->input('fecha_fin');
 
-        // Realizar la lógica de búsqueda de productos con mayor demanda
         $demandas = Producto::whereHas('detalleVentas', function ($query) use ($fechaInicio, $fechaFin) {
             $query->whereBetween('fecha', [$fechaInicio, $fechaFin]);
         })
-        ->withCount(['detalleVentas as demanda_total' => function ($query) use ($fechaInicio, $fechaFin) {
-            $query->whereBetween('fecha', [$fechaInicio, $fechaFin]);
-        }])
-        ->orderByDesc('demanda_total')
-        ->get();
+            ->withCount(['detalleVentas as demanda_total' => function ($query) use ($fechaInicio, $fechaFin) {
+                $query->whereBetween('fecha', [$fechaInicio, $fechaFin]);
+            }])
+            ->orderByDesc('demanda_total')
+            ->get();
 
         return view('productos.buscar', compact('demandas'));
     }
-
 }

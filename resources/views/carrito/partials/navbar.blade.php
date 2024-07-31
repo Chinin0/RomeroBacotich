@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <style>
         .bg-custom {
-            background-color: black;
+            background-color: green;
         }
 
         .contador {
@@ -84,13 +84,12 @@
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-custom shadow-sm">
         <div class="container">
             <div class="navbar-brand">
-                <a href="{{ url('/') }}">
-                    <img src="{{ asset('img/logonuevo.png') }}" alt="Logo de la Empresa" height="70" width="250">
+                <a href="{{ url('/') }}" style="font-family: 'Times New Roman', Times, serif; font-size: 24px; color: #000;">
+                    MXZ Papers
                 </a>
             </div>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -124,51 +123,46 @@
                         <a class="nav-link" href="{{ route('compras') }}">Compras</a>
                     </li>
                     @if (Auth::check() && (Auth::user()->hasRole('administrador') || Auth::user()->hasRole('personal')))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}"><b>Backoffice</b></a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('home') }}"><b>Backoffice</b></a>
+                    </li>
                     @endif
 
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="badge badge-pill badge-dark">
                                 <i class="fa fa-shopping-cart"></i>
                                 {{ \Cart::session(auth()->id())->getTotalQuantity() }}
                             </span>
                         </a>
 
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"
-                            style="width: 450px; padding: 0px; border-color: #9DA0A2">
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" style="width: 450px; padding: 0px; border-color: #9DA0A2">
                             <ul class="list-group" style="margin: 20px;">
                                 @include('carrito.partials.cart-drop')
                             </ul>
                         </div>
                     </li>
                     @auth
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                ¡Hola, {{ Auth::user()->name }}!
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            ¡Hola, {{ Auth::user()->name }}!
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                Logout
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                    style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
                     @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">Register</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('register') }}">Register</a>
+                    </li>
                     @endauth
                 </ul>
             </div>

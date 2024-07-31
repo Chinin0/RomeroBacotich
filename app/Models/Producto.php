@@ -26,4 +26,9 @@ class Producto extends Model
     {
         return $this->belongsTo(Categoria::class, 'idcategoria');
     }
+    
+    public function oferta()
+    {
+        return $this->belongsTo(Oferta::class, 'idoferta');
+    }
 }
