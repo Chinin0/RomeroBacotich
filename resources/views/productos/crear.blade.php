@@ -41,7 +41,7 @@
                                     <select name="idoferta" id="oferta" class="form-control">
                                         <option value="" data-porcentaje="0">Sin Oferta</option>
                                         @foreach ($ofertas as $oferta)
-                                        <option value="{{ $oferta->id }}" data-porcentaje="{{ $oferta->porcentaje }}">{{ $oferta->descripcion }}</option>
+                                        <option value="{{ $oferta->id }}" data-porcentaje="{{ $oferta->porcentaje }}">{{ $oferta->nombre }}</option>
                                         @endforeach
                                     </select>
                                 </div>
