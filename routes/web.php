@@ -64,6 +64,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::view('/ofertas/crear',  'ofertas.create')->name('ofertas.crear');
     Route::DELETE('/ofertas/{id}',  [OfertaController::class, 'delete'])->name('ofertas.delete');
 
+    Route::resource('ofertas', OfertaController::class);
     Route::resource('categorias', CategoriaController::class);
     Route::resource('productos', ProductoController::class);
     Route::resource('activos', ActivoController::class);

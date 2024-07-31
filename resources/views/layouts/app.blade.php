@@ -104,7 +104,7 @@
 
 <div id="app">
     <div class="main-wrapper main-wrapper-1">
-        <div class="navbar-bg" style="background-color: black;"></div>
+        <div class="navbar-bg" style="background-color: green;"></div>
         <nav class="navbar navbar-expand-lg main-navbar">
             @include('layouts.header')
         </nav>

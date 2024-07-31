@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
             font-family: 'Arial', sans-serif;
             background-color: #f8f9fa;
         }
+
         .hero-section {
             background: url('https://img.freepik.com/fotos-premium/lapices-boligrafos-coloridos_23-2147650791.jpg?size=626&ext=jpg') no-repeat center center;
             background-size: cover;
@@ -24,6 +26,7 @@
             text-align: center;
             position: relative;
         }
+
         .hero-section::after {
             content: "";
             position: absolute;
@@ -34,19 +37,23 @@
             background: rgba(0, 0, 0, 0.5);
             z-index: 1;
         }
+
         .hero-section .content {
             position: relative;
             z-index: 2;
         }
+
         .hero-section h1 {
             font-size: 4rem;
             margin-bottom: 20px;
             font-weight: bold;
         }
+
         .hero-section p {
             font-size: 1.5rem;
             margin-bottom: 30px;
         }
+
         .btn-custom {
             background-color: #28a745;
             color: white;
@@ -55,44 +62,57 @@
             font-size: 1.25rem;
             transition: background-color 0.3s ease;
         }
+
         .btn-custom:hover {
             background-color: #218838;
         }
+
         .features {
             padding: 60px 0;
             text-align: center;
         }
+
         .features h2 {
             font-size: 2.5rem;
             margin-bottom: 30px;
         }
+
         .feature-item {
             margin: 20px;
         }
+
         .feature-item img {
             max-width: 100px;
             margin-bottom: 15px;
         }
+
         .footer {
             background-color: #343a40;
             color: white;
             padding: 20px;
             text-align: center;
         }
+
         .footer p {
             margin-bottom: 0;
         }
     </style>
 </head>
+
 <body>
     <!-- Sección Hero -->
     <section class="hero-section">
         <div class="content">
             <h1 style="font-family: 'Times New Roman', Times, serif;" class="display-4">Bienvenido a MXZ Papers</h1>
             <p class="lead">Tu destino para todo tipo de suministros de papelería y oficina. ¡Encuentra lo que necesitas aquí!</p>
+            @if(Auth::check())
+            <a href="{{ route('shop') }}" class="btn btn-custom btn-lg">IR A LA TIENDA</a>
+            @else
             <a href="{{ route('login') }}" class="btn btn-custom btn-lg">INGRESAR</a>
+            @endif
         </div>
     </section>
+
 
     <!-- Sección de Características -->
     <section class="features">
@@ -116,4 +136,5 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
+
 </html>

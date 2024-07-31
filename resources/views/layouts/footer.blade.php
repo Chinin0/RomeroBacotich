@@ -20,7 +20,7 @@
         </div>
         <div class="col-4">
             <small>
-                Fabrica de Billares ROMERO BACOTICH &copy; {{ date('d F Y') }}
+                MXZ Papers &copy; {{ date('d F Y') }}
             </small>
         </div>
         <div class="col-4">

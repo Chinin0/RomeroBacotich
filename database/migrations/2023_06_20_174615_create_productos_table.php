@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('idcategoria')->unsigned();
             $table->foreign('idcategoria')->references('id')->on('categorias');
+            $table->unsignedBigInteger('idoferta')->nullable();
             $table->string('codigo', 50)->nullable();
             $table->string('nombre', 100)->unique();
             $table->decimal('precio_venta', 11, 2);
@@ -25,6 +26,8 @@ return new class extends Migration
             $table->boolean('estado')->default(1);
             $table->string('imagen', 255)->unique();
             $table->timestamps();
+
+            $table->foreign('idoferta')->references('id')->on('ofertas')->onDelete('set null');
         });
     }
 

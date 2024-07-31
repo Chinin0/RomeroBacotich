@@ -26,7 +26,7 @@ Admin Login
             align-items: center;
             width: 100%;
             min-height: 100vh;
-            background: url('assets/images/fondo.png') no-repeat center center;
+            background: url('https://img.freepik.com/fotos-premium/lapices-boligrafos-coloridos_23-2147650791.jpg?size=626&ext=jpg') no-repeat center center;
             background-position: center;
             background-size: cover;
         }
@@ -159,9 +159,7 @@ Admin Login
 </head>
 
 <div class="contenedor">
-    <div class="login-brand">
-        <img src="{{ asset('img/logonuevo.png') }}" alt="logo" height="50" class="shadow-light">
-    </div>
+    
     <div class="formulario">
         <form action="{{ route('login') }}" method="POST">
             @csrf
@@ -200,7 +198,7 @@ Admin Login
                 </label>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-lg btn-block btn-custom" tabindex="4" style="background-color: black;">
+                <button type="submit" class="btn btn-primary btn-lg btn-block btn-custom" tabindex="4" style="background-color: green;">
                     Login
                 </button>
             </div>
