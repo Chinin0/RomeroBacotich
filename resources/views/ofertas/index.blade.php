@@ -16,6 +16,7 @@
                             <table id="data-table" class = "table table-striped mt-2">
                                 <thead >
                                     <th>ID</th>
+                                    <th>Nombre</th>
                                     <th>Descripción</th>
                                     <th>Porcentaje</th>
                                     <th> Acciones</th>
@@ -24,6 +25,7 @@
                                     @foreach($ofertas as $oferta)
                                     <tr>
                                         <td>{{ $oferta->id }}</td>
+                                        <td>{{ $oferta->nombre }}</td>
                                         <td>{{ $oferta->descripcion }}</td>
                                         <td>{{ $oferta->porcentaje }}</td>
                                         <td>

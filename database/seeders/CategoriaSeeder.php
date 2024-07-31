@@ -19,24 +19,36 @@ class CategoriaSeeder extends Seeder
 
         $categorias = [
             [
-                'nombre' => 'Dispositivos de Entrada',
-                'descripcion' => 'Encuentra una variedad de dispositivos de entrada esenciales para tu computadora, desde teclados y ratones ergonómicos hasta webcams de alta definición y altavoces para una experiencia completa.',
+                'nombre' => 'Escritura y Papelería',
+                'descripcion' => 'Encontrarás una variedad de herramientas de escritura y papelería, desde bolígrafos y lápices hasta marcadores y correctores. Ideal para todas tus necesidades de escritura y corrección en la oficina o en el hogar.',
             ],
             [
-                'nombre' => 'Pantallas y Proyección',
-                'descripcion' => 'Explora nuestra selección de pantallas y proyección para mejorar tu visualización, incluyendo monitores LED de alta resolución, pantallas táctiles interactivas y proyectores para presentaciones impactantes.',
+                'nombre' => 'Papel y Cartón',
+                'descripcion' => 'Explora nuestra amplia gama de papeles y cartones, incluyendo hojas bond en varios tamaños, cartulinas y papeles para impresora. Perfecto para tus proyectos de impresión y manualidades.',
             ],
             [
-                'nombre' => 'Conectividad y Cableado',
-                'descripcion' => 'Conecta tus dispositivos de manera eficiente con nuestra gama de cables y accesorios de conectividad, que incluyen cables USB duraderos, adaptadores versátiles y soluciones de cableado para mantener todo organizado.',
+                'nombre' => 'Organización y Archivo',
+                'descripcion' => 'Descubre soluciones para mantener tu espacio ordenado, como carpetas de anillas, archivadores y organizadores de escritorio. Mantén tus documentos y materiales organizados y accesibles.',
             ],
             [
-                'nombre' => 'Almacenamiento y Accesorios',
-                'descripcion' => 'Descubre soluciones de almacenamiento inteligentes y accesorios prácticos para tu equipo, desde unidades de disco duro externas hasta estaciones de acoplamiento y bolsas de transporte para periféricos.',
+                'nombre' => 'Cuadernos y Agendas',
+                'descripcion' => 'Encuentra cuadernos de distintos tamaños y tipos, así como agendas y planificadores. Ideal para tomar notas, planificar tu día y mantener un registro de tus tareas.',
             ],
             [
-                'nombre' => 'Suministros de Oficina Tecnológicos',
-                'descripcion' => 'Encuentra suministros tecnológicos esenciales para tu oficina, desde cartuchos de tinta y papel para impresora hasta lámparas LED de escritorio y kits de limpieza para mantener tus dispositivos en óptimas condiciones.',
+                'nombre' => 'Artículos de Oficina',
+                'descripcion' => 'Aquí encontrarás todos los accesorios esenciales para tu oficina, incluyendo grapadoras, clips, cinta adhesiva y perforadoras. Todo lo que necesitas para el día a día en el trabajo.',
+            ],
+            [
+                'nombre' => 'Mobiliario de Oficina',
+                'descripcion' => 'Ofrecemos una selección de mobiliario para oficina, como sillas ergonómicas, escritorios y mesas auxiliares. Diseñado para crear un espacio de trabajo cómodo y funcional.',
+            ],
+            [
+                'nombre' => 'Material de Oficina en General',
+                'descripcion' => 'Disponemos de una variedad de suministros generales para oficina, como calculadoras, etiquetas y relojes de pared. Todo lo necesario para completar tu equipamiento de oficina.',
+            ],
+            [
+                'nombre' => 'Suministros de Impresión',
+                'descripcion' => 'Encuentra todo lo que necesitas para la impresión, desde cartuchos de tinta y tóner hasta papel fotográfico. Asegura la calidad y eficiencia en tus impresiones diarias.',
             ],
         ];
         foreach ($categorias as $categoriaData) {
